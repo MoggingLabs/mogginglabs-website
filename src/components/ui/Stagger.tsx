@@ -1,5 +1,6 @@
 "use client";
 
+import { Fragment } from "react";
 import { motion, type Variants } from "motion/react";
 import { cn } from "@/lib/utils";
 
@@ -65,21 +66,26 @@ export function HeadlineWords({
   return (
     <span className={cn("inline", className)}>
       {words.map((word, i) => (
-        <span key={i} className="inline-block overflow-hidden pb-[0.08em] -mb-[0.08em] align-bottom">
-          <motion.span
-            className="inline-block"
-            initial={{ y: "110%" }}
-            animate={{ y: 0 }}
-            transition={{
-              duration: 0.7,
-              delay: delay + i * 0.06,
-              ease: [0.25, 1, 0.5, 1],
-            }}
-          >
-            {word}
-          </motion.span>
-          {i < words.length - 1 ? " " : ""}
-        </span>
+        <Fragment key={i}>
+          {/* Mask: padding gives serif italics and descenders room so they
+              are not cropped; negative margins cancel the layout cost. */}
+          <span className="inline-block overflow-hidden align-bottom px-[0.1em] -mx-[0.1em] pb-[0.12em] -mb-[0.12em]">
+            <motion.span
+              className="inline-block will-change-transform"
+              initial={{ y: "130%" }}
+              animate={{ y: 0 }}
+              transition={{
+                duration: 0.7,
+                delay: delay + i * 0.06,
+                ease: [0.25, 1, 0.5, 1],
+              }}
+            >
+              {word}
+            </motion.span>
+          </span>
+          {/* Space lives outside the clipped box so it cannot be trimmed. */}
+          {i < words.length - 1 && " "}
+        </Fragment>
       ))}
     </span>
   );
