@@ -29,7 +29,7 @@ const WORD_COLORS: Rgb[] = [
 const HOLD_MS = 8000;
 
 /** Radius (canvas px) of the cursor's particle-scatter effect. */
-const KILL_RADIUS = 22;
+const KILL_RADIUS = 35;
 
 /** Per-frame background fade. Higher = shorter, crisper particle trails;
  *  lower = long motion-blur smears. Keep high enough that trails read as
@@ -208,8 +208,9 @@ export function ParticleTextEffect({
     const mouse = { x: 0, y: 0, isPressed: false, isRightClick: false };
 
     const nextWord = (word: string, color: Rgb) => {
-      // Coarser sampling on narrow canvases keeps the simulation cheap.
-      const pixelSteps = W < 700 ? 7 : 6;
+      // Sampling stride over the rendered text: lower = denser letters,
+      // more particles. Coarser on narrow canvases keeps mobile cheap.
+      const pixelSteps = W < 700 ? 5 : 4;
 
       const offscreen = document.createElement("canvas");
       offscreen.width = W;
