@@ -40,8 +40,8 @@ export function CreativeQueue() {
         ))}
       </div>
       <p className="pt-3 text-[11px] text-ink-2">
-        <span className="font-medium text-accent">V-12 predicted +38% CTR</span> vs. control — queued for
-        launch pending approval.
+        <span className="font-medium text-accent">V-12 predicted +38% CTR</span> vs. control. Queued
+        for launch pending approval.
       </p>
     </MockFrame>
   );

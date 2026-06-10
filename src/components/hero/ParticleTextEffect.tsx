@@ -13,7 +13,7 @@ interface Rgb {
   b: number;
 }
 
-/** Page background — trails and killed particles dissolve into this. */
+/** Page background, trails and killed particles dissolve into this. */
 const CREAM: Rgb = { r: 250, g: 247, b: 241 };
 
 /** Brand palette the messages cycle through (ink-heavy, persimmon as accent). */
@@ -24,7 +24,7 @@ const WORD_COLORS: Rgb[] = [
   { r: 196, g: 62, b: 16 }, // deep persimmon
 ];
 
-/** How long each message holds on screen. Clock-based — frame counting
+/** How long each message holds on screen. Clock-based, frame counting
  *  would run twice as fast on 120Hz displays. */
 const HOLD_MS = 8000;
 
@@ -252,7 +252,7 @@ export function ParticleTextEffect({
             particle.pos.x = randomPos.x;
             particle.pos.y = randomPos.y;
             // Fast assembly: high travel speed, agile steering, quick color
-            // blend — the word should be readable well within the first
+            // blend, the word should be readable well within the first
             // second of its HOLD_MS window.
             particle.maxSpeed = Math.random() * 8 + 8;
             particle.maxForce = particle.maxSpeed * 0.08;
@@ -277,7 +277,7 @@ export function ParticleTextEffect({
     const animate = () => {
       if (!running) return;
 
-      // Trail fade in the page background color — the canvas stays
+      // Trail fade in the page background color, the canvas stays
       // visually seamless against the cream page, no visible frame.
       ctx.fillStyle = `rgba(${CREAM.r}, ${CREAM.g}, ${CREAM.b}, ${TRAIL_FADE})`;
       ctx.fillRect(0, 0, W, H);
@@ -294,7 +294,7 @@ export function ParticleTextEffect({
         }
       }
 
-      // Right-click drag scatters particles — a quiet easter egg.
+      // Right-click drag scatters particles, a quiet easter egg.
       if (mouse.isPressed && mouse.isRightClick) {
         particles.forEach((particle) => {
           const distance = Math.sqrt(
@@ -316,7 +316,7 @@ export function ParticleTextEffect({
     const start = () => {
       if (running) return;
       running = true;
-      // Give the current word its full dwell after scrolling back into view —
+      // Give the current word its full dwell after scrolling back into view,
       // wall-clock kept ticking while the simulation was paused.
       lastSwitch = performance.now();
       raf = requestAnimationFrame(animate);

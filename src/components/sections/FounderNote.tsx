@@ -15,7 +15,7 @@ export function FounderNote() {
           ))}
         </div>
         <p className="mt-10 font-display text-lg italic text-accent">
-          — {founderNote.signature.replace("TODO_FOUNDER: ", "")}
+          {founderNote.signature.replace("TODO_FOUNDER: ", "")}
         </p>
         <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.16em] text-stone">
           {founderNote.role}

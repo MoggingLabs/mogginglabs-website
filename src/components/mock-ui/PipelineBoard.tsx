@@ -13,8 +13,8 @@ const columns = [
     title: "Re-engaged",
     count: 5,
     cards: [
-      { name: "K. Patel", note: "Replied — wants Thu" },
-      { name: "S. Nguyen", note: "Replied — pricing Q" },
+      { name: "K. Patel", note: "Replied, wants Thu" },
+      { name: "S. Nguyen", note: "Replied, pricing Q" },
     ],
   },
   {

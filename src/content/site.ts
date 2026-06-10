@@ -1,14 +1,14 @@
 export const site = {
-  eyebrow: "AI implementation studio — for lead-gen teams",
+  eyebrow: "An AI implementation studio for lead-gen teams",
   headline: ["AI agents for", "lead-gen teams."],
   headlineAccent: "Built, installed, and running inside the tools you already use.",
   subhead:
-    "MoggingLabs designs, installs, and maintains custom AI agents for marketing and lead-generation teams doing $50k+ a month. We start with a free audit that shows you exactly where your pipeline loses time and revenue — yours to keep, whatever you decide.",
+    "MoggingLabs designs, installs, and maintains custom AI agents for marketing and lead-generation teams doing $50k+ a month. We start with a free audit that shows you exactly where your pipeline loses time and revenue. The audit is yours to keep, whatever you decide.",
   primaryCta: "Get your free AI audit",
   // Cycling particle-hero messages. Rules: every message must be fully
   // self-contained (a visitor landing mid-loop must understand it with no
-  // other context), and short enough to read in a glance — they render as
-  // a single fitted line of display type, ~8s each.
+  // other context) and short enough to read in a glance. Each renders as
+  // a single fitted line of display type for ~8s.
   heroMessages: [
     "AI agents for lead-gen teams",
     "Agents answer every lead in seconds",
@@ -53,7 +53,7 @@ export const problem = {
   pullQuoteNote: "TODO_FOUNDER: verify framing / source for response-time stat.",
   paragraphs: [
     {
-      text: "Speed-to-lead decays by the minute. A lead answered within five minutes is dramatically more likely to convert than one answered an hour later — and most teams answer in hours.",
+      text: "Speed-to-lead decays by the minute. A lead answered within five minutes is dramatically more likely to convert than one answered an hour later, and most teams answer in hours.",
       stat: "5 min",
       statLabel: "the window that decides the deal",
     },
@@ -63,8 +63,8 @@ export const problem = {
       statLabel: "of conversions need 5+ touches",
     },
     {
-      text: "Operations work quietly absorbs your margin. Reporting, onboarding, creative briefs — hours of skilled time spent on tasks an agent handles in seconds, every day, without being asked.",
-      stat: "0.5–2",
+      text: "Operations work quietly absorbs your margin. Reporting, onboarding, and creative briefs eat hours of skilled time on tasks an agent handles in seconds, every day, without being asked.",
+      stat: "0.5 to 2",
       statLabel: "full-time roles' worth of routine work per agent",
     },
   ],
@@ -74,7 +74,7 @@ export const founderNote = {
   title: "A note from the founder",
   // TODO_FOUNDER: replace with your own words, ~120 words, plain and direct.
   body: [
-    "TODO_FOUNDER: We run every system in our own business before we recommend it to anyone. Our ad pipelines, our prospecting, our reporting — agents handle them daily, and we see exactly where they save hours and where they don't.",
+    "TODO_FOUNDER: We run every system in our own business before we recommend it to anyone. Agents handle our ad pipelines, our prospecting, and our reporting every day, and we see exactly where they save hours and where they don't.",
     "TODO_FOUNDER: That's the deal: we only install what we'd run ourselves, and we start with an audit you keep whether or not you hire us.",
   ],
   signature: "TODO_FOUNDER: Founder name",
@@ -84,7 +84,7 @@ export const founderNote = {
 export const auditCta = {
   number: "05",
   title: "Get your free AI audit",
-  sub: "Twenty minutes, no deck, no pressure. We map your pipeline and tell you exactly what we'd automate first — you keep the map either way.",
+  sub: "Twenty minutes, no slides, no pressure. We map your pipeline and tell you exactly what we'd automate first. You keep the map either way.",
   bullets: [
     "A 20-minute review of your current pipeline and stack",
     "A map of your three biggest automation gaps, ranked by ROI",

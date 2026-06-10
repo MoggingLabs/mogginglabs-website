@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-/** Shared window chrome for all mock UIs — light, paper-like, crisp. */
+/** Shared window chrome for all mock UIs: light, paper-like, crisp. */
 export function MockFrame({
   title,
   children,

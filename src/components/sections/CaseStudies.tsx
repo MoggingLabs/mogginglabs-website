@@ -9,7 +9,7 @@ export function CaseStudies() {
       <Eyebrow number={casesIntro.number}>{casesIntro.title}</Eyebrow>
       <Reveal className="mt-8 max-w-3xl">
         <h2 className="font-display text-4xl md:text-5xl leading-[1.05] tracking-tight">
-          Built, shipped, <span className="text-accent italic">measured</span>.
+          Built, shipped, and <span className="text-accent italic">measured</span>.
         </h2>
         <p className="mt-5 text-lg text-ink-2 leading-relaxed">{casesIntro.sub}</p>
       </Reveal>

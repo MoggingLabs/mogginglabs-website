@@ -46,7 +46,7 @@ export function LazyTypeform({ height = 560 }: { height?: number }) {
             Four quick questions. If we&rsquo;re a fit, you book a call instantly.
           </p>
           <p className="text-sm text-ink-2">
-            The application form is being finalized — meanwhile, email{" "}
+            The application form is being finalized. In the meantime, email{" "}
             <a href={`mailto:${CONTACT_EMAIL}`} className="text-accent underline underline-offset-4">
               {CONTACT_EMAIL}
             </a>{" "}

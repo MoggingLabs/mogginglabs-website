@@ -11,7 +11,7 @@ export function Hero() {
   return (
     <section className="relative overflow-hidden">
       {/* Full-bleed particle field: the canvas covers the whole section so
-          its edges coincide with the viewport — no visible frame anywhere.
+          its edges coincide with the viewport and no frame is visible.
           Particles fly in from off-screen and the words form mid-section. */}
       <motion.div
         initial={{ opacity: 0 }}

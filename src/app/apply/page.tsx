@@ -7,7 +7,7 @@ import { auditCta } from "@/content/site";
 export const metadata: Metadata = {
   title: "Apply for a free AI audit",
   description:
-    "Four quick questions. If we're a fit, you book a call instantly — and you keep the audit either way.",
+    "Four quick questions. If we're a fit, you book a call instantly, and you keep the audit either way.",
 };
 
 export default function ApplyPage() {

@@ -2,19 +2,19 @@ import { MockFrame, LiveBadge } from "./Frame";
 
 const messages = [
   {
-    who: "New lead — Maria G.",
+    who: "New lead: Maria G.",
     ai: false,
     time: "2:14 AM",
-    text: "Hi, saw your ad — do you do full roof replacements in Plano? Need a quote this week.",
+    text: "Hi, saw your ad. Do you do full roof replacements in Plano? Need a quote this week.",
   },
   {
     who: "Dash",
     ai: true,
     time: "2:14 AM",
-    text: "Hi Maria — yes, we cover Plano. Most replacements run 1–2 days on site. I can get you a free inspection Thursday 10am or Friday 2pm — which works better?",
+    text: "Hi Maria, yes, we cover Plano. Most replacements run 1 to 2 days on site. I can get you a free inspection Thursday 10am or Friday 2pm. Which works better?",
   },
   {
-    who: "New lead — Maria G.",
+    who: "New lead: Maria G.",
     ai: false,
     time: "2:16 AM",
     text: "Thursday 10am works.",
@@ -23,7 +23,7 @@ const messages = [
     who: "Dash",
     ai: true,
     time: "2:16 AM",
-    text: "Booked — Thursday 10am. Confirmation just hit your phone. See you then.",
+    text: "Booked for Thursday 10am. Confirmation just hit your phone. See you then.",
   },
 ];
 

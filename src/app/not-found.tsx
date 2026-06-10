@@ -14,7 +14,7 @@ export default function NotFound() {
             We couldn&rsquo;t find that page.
           </h1>
           <p className="mt-4 text-lg text-ink-2">
-            It may have moved — everything you need is back on the home page.
+            It may have moved. Everything you need is back on the home page.
           </p>
           <div className="mt-8">
             <Link href="/" className={buttonClasses({ size: "lg" })}>

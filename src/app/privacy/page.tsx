@@ -15,7 +15,7 @@ const sections = [
   },
   {
     h: "How we use it",
-    p: "We use your information to run your audit, respond to your inquiry, and — if you've asked us to — send you relevant follow-up email. Analytics data is used in aggregate to improve the site. We never sell your data, and we never share it with third parties except the processors below.",
+    p: "We use your information to run your audit, respond to your inquiry, and, if you've asked us to, send you relevant follow-up email. Analytics data is used in aggregate to improve the site. We never sell your data, and we never share it with third parties except the processors below.",
   },
   {
     h: "Processors we rely on",

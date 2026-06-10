@@ -62,7 +62,7 @@ export function AgentShowcase() {
           Six agents, ready to join <span className="text-accent italic">your</span> team.
         </h2>
         <p className="mt-5 text-lg text-ink-2 leading-relaxed">
-          Every agent below runs in production today. Select one to read its file — the interface
+          Every agent below runs in production today. Select one to read its file. The interface
           shown is the one your team would actually use.
         </p>
       </Reveal>

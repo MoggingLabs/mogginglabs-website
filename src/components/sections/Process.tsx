@@ -19,7 +19,7 @@ export function Process() {
       <Eyebrow number={processIntro.number}>{processIntro.title}</Eyebrow>
       <Reveal className="mt-8 max-w-3xl">
         <h2 className="font-display text-4xl md:text-5xl leading-[1.05] tracking-tight">
-          From audit to running agent in <span className="text-accent italic">weeks</span>, not quarters.
+          From audit to a running agent in <span className="text-accent italic">a few weeks</span>.
         </h2>
         <p className="mt-5 text-lg text-ink-2 leading-relaxed">{processIntro.sub}</p>
       </Reveal>

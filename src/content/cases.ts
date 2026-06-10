@@ -10,7 +10,7 @@ export interface CaseStudy {
 export const casesIntro = {
   number: "04",
   title: "Results",
-  sub: "Systems we've built and run — some for clients, some for our own operations. Names withheld, numbers real.",
+  sub: "Systems we've built and run, some for clients and some for our own operations. We've withheld the names, but the numbers are real.",
 } as const;
 
 export const cases: CaseStudy[] = [
@@ -33,7 +33,7 @@ export const cases: CaseStudy[] = [
     context:
       "Our own image-ad production for client campaigns: briefing, generating, reviewing, and launching creative was a full-time job.",
     installed:
-      "An end-to-end creative pipeline — brief → generate → review → launch → audit — with human approval gates and Meta performance loops.",
+      "An end-to-end creative pipeline that briefs, generates, reviews, launches, and audits, with human approval gates and Meta performance loops.",
     metrics: [
       { label: "Variants per week", before: "6", after: "40+", todo: true }, // TODO_FOUNDER
       { label: "Brief-to-launch", before: "Days", after: "Hours", todo: true }, // TODO_FOUNDER
@@ -44,7 +44,7 @@ export const cases: CaseStudy[] = [
     tag: "Prospecting",
     title: "B2B prospecting platform (internal)",
     context:
-      "Outbound prospecting needed researched, qualified lists — not scraped spam — and a CRM that kept itself up to date.",
+      "Outbound prospecting needed researched, qualified lists instead of scraped spam, plus a CRM that kept itself up to date.",
     installed:
       "A prospecting intelligence platform that researches companies, scores fit, and feeds a living CRM pipeline.",
     metrics: [

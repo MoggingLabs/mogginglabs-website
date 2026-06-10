@@ -25,17 +25,17 @@ export const processSteps: ProcessStep[] = [
   {
     number: "02",
     title: "Build",
-    body: "We build and install one to three agents directly into the tools you already run — GoHighLevel, Meta, Slack, your inbox. No new dashboards to learn and no migration projects. Weeks, not quarters.",
+    body: "We build and install one to three agents directly into the tools you already run, like GoHighLevel, Meta, Slack, and your inbox. There are no new dashboards to learn and no migration projects, and most builds take a few weeks.",
     table: {
       youGet: "Agents live in production",
       weNeed: "Access + a Slack channel",
-      duration: "1–3 weeks", // TODO_FOUNDER: confirm exact timeline
+      duration: "1 to 3 weeks", // TODO_FOUNDER: confirm exact timeline
     },
   },
   {
     number: "03",
     title: "Prove",
-    body: "Agents run alongside your team while we report against the audit baseline. You see response times, show rates, and hours saved in plain numbers — not anecdotes.",
+    body: "Agents run alongside your team while we report against the audit baseline. You see response times, show rates, and hours saved in plain numbers instead of anecdotes.",
     table: {
       youGet: "Weekly numbers vs. baseline",
       weNeed: "Honest feedback",
@@ -48,7 +48,7 @@ export const processSteps: ProcessStep[] = [
     body: "We maintain, tune, and expand. Models change every quarter; your agents keep up without you thinking about it. Add the next agent when the first one has paid for itself.",
     table: {
       youGet: "Maintenance, tuning, upgrades",
-      weNeed: "Nothing — we monitor",
+      weNeed: "Nothing. We monitor.",
       duration: "Ongoing",
     },
   },

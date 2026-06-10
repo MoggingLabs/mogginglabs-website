@@ -33,7 +33,7 @@ export function DigestCard() {
         ))}
       </div>
       <p className="pt-3 text-[11px] leading-relaxed text-ink-2">
-        CPL drift traced to one fatigued ad set — pausing recommendation drafted for your approval.
+        CPL drift traced to one fatigued ad set. A pause recommendation is drafted for your approval.
       </p>
     </MockFrame>
   );

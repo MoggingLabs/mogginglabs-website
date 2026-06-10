@@ -15,7 +15,9 @@ export function Footer() {
             </p>
             <p className="mt-4 max-w-xl font-display text-3xl md:text-4xl leading-[1.1] tracking-tight text-ink">
               Start with the free audit.{" "}
-              <span className="text-accent italic">Twenty minutes, a clear map, yours to keep.</span>
+              <span className="text-accent italic">
+                Twenty minutes gets you a clear map of what to automate.
+              </span>
             </p>
           </div>
           <div className="shrink-0">
@@ -34,7 +36,7 @@ export function Footer() {
           </p>
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-ink-2">
             An AI implementation studio. We design, install, and maintain custom AI agents for
-            marketing and lead-generation teams — inside the tools you already use.
+            marketing and lead-generation teams, working inside the tools you already use.
           </p>
           <p className="mt-6 font-mono text-[11px] uppercase tracking-[0.16em] text-stone">
             Serving US teams · built and run from our own pipelines

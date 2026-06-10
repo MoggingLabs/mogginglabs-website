@@ -5,7 +5,7 @@ export interface FaqItem {
 
 export const faqIntro = {
   title: "Common questions, straight answers",
-  sub: "Anything else — ask on the audit call. If AI can't help you right now, we'll say so.",
+  sub: "If your question isn't here, ask on the audit call. If AI can't help you right now, we'll say so.",
 } as const;
 
 export const faq: FaqItem[] = [
@@ -15,11 +15,11 @@ export const faq: FaqItem[] = [
   },
   {
     q: "What happens after the audit?",
-    a: "You get your automation map within 48 hours — yours to keep, no strings. If we both see a fit, we scope the first build with a fixed price and timeline. If not, you still walk away knowing exactly what to automate first.",
+    a: "You get your automation map within 48 hours, and it's yours to keep with no strings attached. If we both see a fit, we scope the first build with a fixed price and timeline. If not, you still walk away knowing exactly what to automate first.",
   },
   {
     q: "Will this work with our stack?",
-    a: "If you run GoHighLevel, Meta Ads, HubSpot, Slack, Google Workspace, or anything with an API — yes. Agents are installed into your existing tools. No new dashboards, no migrations.",
+    a: "If you run GoHighLevel, Meta Ads, HubSpot, Slack, Google Workspace, or anything with an API, then yes. Agents are installed into your existing tools, so you won't need new dashboards or a migration.",
   },
   {
     q: "How fast is an agent live?",
@@ -27,7 +27,7 @@ export const faq: FaqItem[] = [
   },
   {
     q: "Does this replace my team?",
-    a: "It takes over the work your team shouldn't be doing — the 2am lead replies, the fourth follow-up, the Monday-morning reporting. Your people focus on closing deals and keeping clients. The agents handle the rest.",
+    a: "It takes over the work your team shouldn't be doing: the 2am lead replies, the fourth follow-up, the Monday-morning reporting. Your people focus on closing deals and keeping clients. The agents handle the rest.",
   },
   {
     q: "What about our data?",

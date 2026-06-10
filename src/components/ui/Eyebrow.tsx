@@ -15,7 +15,7 @@ export function Eyebrow({
   return (
     <div className={cn("flex items-center gap-4", className)}>
       <span className="font-mono text-xs uppercase tracking-[0.2em] text-stone whitespace-nowrap">
-        {number ? `${number} — ` : ""}
+        {number ? `${number} / ` : ""}
         {children}
       </span>
       <motion.span

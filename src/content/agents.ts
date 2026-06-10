@@ -28,7 +28,7 @@ export const agents: Agent[] = [
       { label: "Stack", value: "GHL · Twilio · Meta Lead Ads" },
       { label: "Responds in", value: "< 60 seconds, 24/7" },
       { label: "Replaces", value: "0.5 FTE setter" },
-      { label: "Installed in", value: "1–2 weeks" },
+      { label: "Installed in", value: "1 to 2 weeks" },
     ],
     beforeAfter: {
       label: "Median response time",
@@ -47,8 +47,8 @@ export const agents: Agent[] = [
     spec: [
       { label: "Stack", value: "GoHighLevel · SMS · Email" },
       { label: "Sequences", value: "Multi-day, multi-channel" },
-      { label: "Replaces", value: "0.5–1 FTE setter" },
-      { label: "Installed in", value: "1–2 weeks" },
+      { label: "Replaces", value: "0.5 to 1 FTE setter" },
+      { label: "Installed in", value: "1 to 2 weeks" },
     ],
     beforeAfter: {
       label: "Show rate",
@@ -66,9 +66,9 @@ export const agents: Agent[] = [
     mockUi: "creative-queue",
     spec: [
       { label: "Stack", value: "Meta Ads · image gen · review queue" },
-      { label: "Output", value: "Briefs → variants → launch packs" },
+      { label: "Output", value: "Briefs, variants, launch packs" },
       { label: "Replaces", value: "1 FTE creative coordinator" },
-      { label: "Installed in", value: "2–3 weeks" },
+      { label: "Installed in", value: "2 to 3 weeks" },
     ],
     beforeAfter: {
       label: "Ad variants shipped",
@@ -102,13 +102,13 @@ export const agents: Agent[] = [
     name: "Anchor",
     role: "Client onboarding agent",
     description:
-      "Starts the moment a deal closes. Intake form, asset collection, kickoff checklist, channel setup — nothing falls through between the signature and the launch.",
+      "Starts the moment a deal closes. The intake form, asset collection, kickoff checklist, and channel setup all happen on their own, so nothing falls through between the signature and the launch.",
     mockUi: "onboarding-checklist",
     spec: [
       { label: "Stack", value: "CRM webhook · Drive · Slack" },
       { label: "Trigger", value: "Deal-won, instant" },
       { label: "Replaces", value: "Manual onboarding admin" },
-      { label: "Installed in", value: "1–2 weeks" },
+      { label: "Installed in", value: "1 to 2 weeks" },
     ],
     beforeAfter: {
       label: "Onboarding time",
@@ -122,7 +122,7 @@ export const agents: Agent[] = [
     name: "Ledger",
     role: "Margin digest",
     description:
-      "Summarizes P&L, ad spend, and cost-per-lead into a daily digest in the owner's inbox. No end-of-month surprises — you see margin drift the day it starts.",
+      "Summarizes P&L, ad spend, and cost-per-lead into a daily digest in the owner's inbox. There are no end-of-month surprises, because you see margin drift the day it starts.",
     mockUi: "digest-card",
     spec: [
       { label: "Stack", value: "Stripe · ad accounts · sheets" },
