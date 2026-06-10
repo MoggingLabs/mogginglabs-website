@@ -56,7 +56,7 @@ class Particle {
   acc: Vector2D = { x: 0, y: 0 };
   target: Vector2D = { x: 0, y: 0 };
 
-  closeEnoughTarget = 100;
+  closeEnoughTarget = 50;
   maxSpeed = 1.0;
   maxForce = 0.1;
   particleSize = 10;
@@ -251,10 +251,13 @@ export function ParticleTextEffect({
             const randomPos = generateRandomPos(W / 2, H / 2, (W + H) / 2, W, H);
             particle.pos.x = randomPos.x;
             particle.pos.y = randomPos.y;
-            particle.maxSpeed = Math.random() * 6 + 4;
-            particle.maxForce = particle.maxSpeed * 0.05;
+            // Fast assembly: high travel speed, agile steering, quick color
+            // blend — the word should be readable well within the first
+            // second of its HOLD_MS window.
+            particle.maxSpeed = Math.random() * 8 + 8;
+            particle.maxForce = particle.maxSpeed * 0.08;
             particle.particleSize = Math.random() * 6 + 6;
-            particle.colorBlendRate = Math.random() * 0.0275 + 0.0025;
+            particle.colorBlendRate = Math.random() * 0.05 + 0.015;
             particles.push(particle);
           }
 
