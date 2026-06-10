@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { Fraunces, Geist, Geist_Mono } from "next/font/google";
 import { MotionProvider } from "@/components/providers/MotionProvider";
 import { Analytics } from "@vercel/analytics/next";
@@ -25,20 +25,20 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${SITE_NAME} — AI employees for lead-gen teams`,
+    default: `${SITE_NAME} — AI agents for lead-gen teams`,
     template: `%s — ${SITE_NAME}`,
   },
   description: SITE_DESCRIPTION,
   openGraph: {
     type: "website",
     siteName: SITE_NAME,
-    title: `${SITE_NAME} — AI employees for lead-gen teams`,
+    title: `${SITE_NAME} — AI agents for lead-gen teams`,
     description: SITE_DESCRIPTION,
     url: SITE_URL,
   },
   twitter: {
     card: "summary_large_image",
-    title: `${SITE_NAME} — AI employees for lead-gen teams`,
+    title: `${SITE_NAME} — AI agents for lead-gen teams`,
     description: SITE_DESCRIPTION,
   },
   robots: { index: true, follow: true },

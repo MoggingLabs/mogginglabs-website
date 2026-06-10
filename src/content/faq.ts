@@ -27,7 +27,7 @@ export const faq: FaqItem[] = [
   },
   {
     q: "Does this replace my team?",
-    a: "It replaces the work your team shouldn't be doing — the 2am lead replies, the fourth follow-up touch, the Monday reporting grind. Your people close deals and keep clients. The agents do the rest.",
+    a: "It takes over the work your team shouldn't be doing — the 2am lead replies, the fourth follow-up, the Monday-morning reporting. Your people focus on closing deals and keeping clients. The agents handle the rest.",
   },
   {
     q: "What about our data?",

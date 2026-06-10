@@ -30,9 +30,9 @@ export const segments: Segment[] = [
     label: "PPC & paid-media agencies",
     eyebrow: "For PPC & paid-media agencies",
     headline: ["Scale clients,", "not headcount."],
-    headlineAccent: "AI employees for every account.",
+    headlineAccent: "AI agents on every account.",
     subhead:
-      "Every new client used to mean more setters, more reporting hours, more creative grind. MoggingLabs installs agents that absorb the ops load, so the margin from your next ten clients stays yours.",
+      "Every new client used to mean more setters, more reporting hours, more creative production. MoggingLabs installs agents that absorb the operational load, so the margin from your next ten clients stays yours.",
     pains: [
       "Reporting eats billable hours across every account, every week.",
       "Creative production can't keep up with fatigue on winning campaigns.",

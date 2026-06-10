@@ -11,10 +11,10 @@ export default function NotFound() {
         <div className="text-center">
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-stone">404</p>
           <h1 className="mt-4 font-display text-4xl md:text-5xl tracking-tight">
-            This page doesn&rsquo;t exist.
+            We couldn&rsquo;t find that page.
           </h1>
           <p className="mt-4 text-lg text-ink-2">
-            But your free AI audit does.
+            It may have moved — everything you need is back on the home page.
           </p>
           <div className="mt-8">
             <Link href="/" className={buttonClasses({ size: "lg" })}>

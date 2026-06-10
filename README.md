@@ -1,6 +1,6 @@
 # MoggingLabs — mogginglabs.org
 
-Marketing site for MoggingLabs, an AI implementation studio installing custom AI agents ("AI employees") for US marketing and lead-gen teams doing $50k+/month.
+Marketing site for MoggingLabs, an AI implementation studio installing custom AI agents for US marketing and lead-generation teams doing $50k+/month.
 
 Light, editorial, anti-AI-slop design: cream/ink/persimmon palette, Fraunces display serif, Geist Sans/Mono, hairline borders. Conversion funnel: free AI audit → Typeform qualification → booking.
 

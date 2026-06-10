@@ -9,8 +9,8 @@ export interface CaseStudy {
 
 export const casesIntro = {
   number: "04",
-  title: "Receipts",
-  sub: "Systems we've built and run — some for clients, some on our own money. Names withheld, numbers real.",
+  title: "Results",
+  sub: "Systems we've built and run — some for clients, some for our own operations. Names withheld, numbers real.",
 } as const;
 
 export const cases: CaseStudy[] = [
@@ -25,7 +25,7 @@ export const cases: CaseStudy[] = [
       { label: "Lead response time", before: "Hours", after: "< 1 min", todo: true }, // TODO_FOUNDER
       { label: "Cost per booked job", before: "TODO", after: "TODO", todo: true }, // TODO_FOUNDER
     ],
-    takeaway: "The fastest responder wins the roof. Now that's us.",
+    takeaway: "The fastest response usually wins the job. Now it's theirs.",
   },
   {
     tag: "Creative ops",
@@ -51,6 +51,6 @@ export const cases: CaseStudy[] = [
       { label: "Research time per account", before: "25 min", after: "Seconds", todo: true }, // TODO_FOUNDER
       { label: "Qualified accounts / week", before: "TODO", after: "TODO", todo: true }, // TODO_FOUNDER
     ],
-    takeaway: "The same system that will find your next hundred clients found ours.",
+    takeaway: "The same system we would install for a client is how we find our own.",
   },
 ];

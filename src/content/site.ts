@@ -1,9 +1,9 @@
 export const site = {
   eyebrow: "AI implementation studio — for lead-gen teams",
-  headline: ["AI employees for", "lead-gen teams."],
-  headlineAccent: "Built, installed, and running inside your stack.",
+  headline: ["AI agents for", "lead-gen teams."],
+  headlineAccent: "Built, installed, and running inside the tools you already use.",
   subhead:
-    "MoggingLabs designs and installs custom AI agents for marketing and lead-gen teams doing $50k+/month — without the six-figure consulting engagement. Start with a free audit of where your pipeline leaks.",
+    "MoggingLabs designs, installs, and maintains custom AI agents for marketing and lead-generation teams doing $50k+ a month. We start with a free audit that shows you exactly where your pipeline loses time and revenue — yours to keep, whatever you decide.",
   primaryCta: "Get your free AI audit",
   secondaryCta: "See the agents",
   trustLine:
@@ -37,7 +37,7 @@ export const systemsMarquee = [
 
 export const problem = {
   number: "01",
-  title: "Where lead-gen margin dies",
+  title: "Where lead-gen teams lose time and revenue",
   pullQuote:
     "Your leads wait 47 minutes. Your competitors answer in 47 seconds.",
   pullQuoteNote: "TODO_FOUNDER: verify framing / source for response-time stat.",
@@ -53,9 +53,9 @@ export const problem = {
       statLabel: "of conversions need 5+ touches",
     },
     {
-      text: "Ops headcount eats the margin you fought for. Reporting, onboarding, creative briefs — hours of skilled work spent on tasks an agent does in seconds, every day, without being asked.",
+      text: "Operations work quietly absorbs your margin. Reporting, onboarding, creative briefs — hours of skilled time spent on tasks an agent handles in seconds, every day, without being asked.",
       stat: "0.5–2",
-      statLabel: "FTEs replaced per installed agent",
+      statLabel: "full-time roles' worth of routine work per agent",
     },
   ],
 } as const;
@@ -64,7 +64,7 @@ export const founderNote = {
   title: "A note from the founder",
   // TODO_FOUNDER: replace with your own words, ~120 words, plain and direct.
   body: [
-    "TODO_FOUNDER: We run these systems on our own money before we sell them to you. Our ad pipelines, our prospecting, our reporting — agents handle them daily, and we see exactly where they save hours and where they don't.",
+    "TODO_FOUNDER: We run every system in our own business before we recommend it to anyone. Our ad pipelines, our prospecting, our reporting — agents handle them daily, and we see exactly where they save hours and where they don't.",
     "TODO_FOUNDER: That's the deal: we only install what we'd run ourselves, and we start with an audit you keep whether or not you hire us.",
   ],
   signature: "TODO_FOUNDER: Founder name",

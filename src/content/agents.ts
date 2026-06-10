@@ -22,7 +22,7 @@ export const agents: Agent[] = [
     name: "Dash",
     role: "Speed-to-lead responder",
     description:
-      "Answers every inbound lead by SMS and email in under a minute, around the clock. Qualifies, answers the first three questions, and pushes for the booking while the lead is still warm.",
+      "Answers every inbound lead by SMS and email in under a minute, around the clock. Qualifies the lead, handles the first questions, and offers appointment times while interest is still high.",
     mockUi: "slack-thread",
     spec: [
       { label: "Stack", value: "GHL · Twilio · Meta Lead Ads" },
@@ -62,7 +62,7 @@ export const agents: Agent[] = [
     name: "Foundry",
     role: "Ad creative pipeline",
     description:
-      "Runs your creative production end to end: brief, generate, review, launch, audit. Feeds on winning angles and ships fresh variants before fatigue shows up in the metrics.",
+      "Runs your creative production end to end: brief, generate, review, launch, audit. Learns from your winning angles and prepares fresh variants before fatigue shows up in the metrics.",
     mockUi: "creative-queue",
     spec: [
       { label: "Stack", value: "Meta Ads · image gen · review queue" },
@@ -102,7 +102,7 @@ export const agents: Agent[] = [
     name: "Anchor",
     role: "Client onboarding agent",
     description:
-      "Fires the moment a deal closes. Intake form, asset collection, kickoff checklist, channel setup — zero dropped balls between the signature and the launch.",
+      "Starts the moment a deal closes. Intake form, asset collection, kickoff checklist, channel setup — nothing falls through between the signature and the launch.",
     mockUi: "onboarding-checklist",
     spec: [
       { label: "Stack", value: "CRM webhook · Drive · Slack" },
@@ -122,12 +122,12 @@ export const agents: Agent[] = [
     name: "Ledger",
     role: "Margin digest",
     description:
-      "Rolls up P&L, ad spend, and cost-per-lead into a daily digest in the owner's inbox. No more end-of-month surprises — you see margin drift the day it starts.",
+      "Summarizes P&L, ad spend, and cost-per-lead into a daily digest in the owner's inbox. No end-of-month surprises — you see margin drift the day it starts.",
     mockUi: "digest-card",
     spec: [
       { label: "Stack", value: "Stripe · ad accounts · sheets" },
       { label: "Cadence", value: "Daily, 7:00 am" },
-      { label: "Replaces", value: "Monthly bookkeeping panic" },
+      { label: "Replaces", value: "Month-end reporting scramble" },
       { label: "Installed in", value: "1 week" },
     ],
     beforeAfter: {

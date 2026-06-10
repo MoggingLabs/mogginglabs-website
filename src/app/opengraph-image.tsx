@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "MoggingLabs — AI employees for lead-gen teams";
+export const alt = "MoggingLabs — AI agents for lead-gen teams";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -39,12 +39,12 @@ export default function OgImage() {
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div style={{ fontSize: 76, lineHeight: 1.05, letterSpacing: -2, maxWidth: 950 }}>
-            AI employees for lead-gen teams.
+            AI agents for lead-gen teams.
           </div>
           <div style={{ display: "flex", marginTop: 28, alignItems: "center", gap: 18 }}>
             <div style={{ width: 64, height: 4, background: "#e8501a" }} />
             <div style={{ fontSize: 28, color: "#3d3830" }}>
-              Built, installed, and running inside your stack.
+              Built, installed, and running inside the tools you already use.
             </div>
           </div>
         </div>

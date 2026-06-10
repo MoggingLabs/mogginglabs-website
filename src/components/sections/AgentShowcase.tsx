@@ -59,7 +59,7 @@ export function AgentShowcase() {
       <Eyebrow number="02">Meet the team</Eyebrow>
       <Reveal className="mt-8 max-w-3xl">
         <h2 className="font-display text-4xl md:text-5xl leading-[1.05] tracking-tight">
-          Six agents, ready for <span className="text-accent italic">your</span> payroll.
+          Six agents, ready to join <span className="text-accent italic">your</span> team.
         </h2>
         <p className="mt-5 text-lg text-ink-2 leading-relaxed">
           Every agent below runs in production today. Select one to read its file — the interface

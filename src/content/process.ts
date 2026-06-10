@@ -8,7 +8,7 @@ export interface ProcessStep {
 export const processIntro = {
   number: "03",
   title: "How an agent gets hired",
-  sub: "No 90-day programs, no specialist placements, no retainer you're afraid to cancel. Four steps, most of them measured in days.",
+  sub: "No 90-day programs and no long-term contracts. Four clear steps, most of them measured in days.",
 } as const;
 
 export const processSteps: ProcessStep[] = [
@@ -18,14 +18,14 @@ export const processSteps: ProcessStep[] = [
     body: "We map where your pipeline leaks: response times, follow-up gaps, hours burned on manual work. You get a ranked list of what to automate first, with the math attached. It's free, and you keep it either way.",
     table: {
       youGet: "Your automation map, ranked by ROI",
-      weNeed: "20 minutes + a look at your stack",
+      weNeed: "20 minutes + a look at your tools",
       duration: "Within 48 hours",
     },
   },
   {
     number: "02",
     title: "Build",
-    body: "We build and install one to three agents directly into the tools you already run — GoHighLevel, Meta, Slack, your inbox. No new dashboards, no rip-and-replace. Weeks, not quarters.",
+    body: "We build and install one to three agents directly into the tools you already run — GoHighLevel, Meta, Slack, your inbox. No new dashboards to learn and no migration projects. Weeks, not quarters.",
     table: {
       youGet: "Agents live in production",
       weNeed: "Access + a Slack channel",
@@ -35,7 +35,7 @@ export const processSteps: ProcessStep[] = [
   {
     number: "03",
     title: "Prove",
-    body: "Agents run alongside your team while we report against the audit baseline. You see response times, show rates, and hours saved in plain numbers — not a vibes-based success story.",
+    body: "Agents run alongside your team while we report against the audit baseline. You see response times, show rates, and hours saved in plain numbers — not anecdotes.",
     table: {
       youGet: "Weekly numbers vs. baseline",
       weNeed: "Honest feedback",
