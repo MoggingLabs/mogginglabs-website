@@ -16,7 +16,7 @@ interface Rgb {
 /** Page background — trails and killed particles dissolve into this. */
 const CREAM: Rgb = { r: 250, g: 247, b: 241 };
 
-/** Brand palette the words cycle through (ink-heavy, persimmon as accent). */
+/** Brand palette the messages cycle through (ink-heavy, persimmon as accent). */
 const WORD_COLORS: Rgb[] = [
   { r: 22, g: 19, b: 14 }, // ink
   { r: 232, g: 80, b: 26 }, // persimmon
@@ -24,22 +24,20 @@ const WORD_COLORS: Rgb[] = [
   { r: 196, g: 62, b: 16 }, // deep persimmon
 ];
 
-const CANVAS_W = 1000;
-const CANVAS_H = 500;
-const FRAMES_PER_WORD = 240; // ~4s per word at 60fps
+const FRAMES_PER_WORD = 240; // ~4s per message at 60fps
 
-function generateRandomPos(x: number, y: number, mag: number): Vector2D {
-  const randomX = Math.random() * CANVAS_W;
-  const randomY = Math.random() * CANVAS_H;
+function generateRandomPos(cx: number, cy: number, mag: number, w: number, h: number): Vector2D {
+  const randomX = Math.random() * w;
+  const randomY = Math.random() * h;
 
-  const direction = { x: randomX - x, y: randomY - y };
+  const direction = { x: randomX - cx, y: randomY - cy };
   const magnitude = Math.sqrt(direction.x * direction.x + direction.y * direction.y);
   if (magnitude > 0) {
     direction.x = (direction.x / magnitude) * mag;
     direction.y = (direction.y / magnitude) * mag;
   }
 
-  return { x: x + direction.x, y: y + direction.y };
+  return { x: cx + direction.x, y: cy + direction.y };
 }
 
 class Particle {
@@ -118,9 +116,9 @@ class Particle {
   }
 
   /** Send the particle off-canvas, fading back into the page background. */
-  kill() {
+  kill(w: number, h: number) {
     if (this.isKilled) return;
-    const randomPos = generateRandomPos(CANVAS_W / 2, CANVAS_H / 2, (CANVAS_W + CANVAS_H) / 2);
+    const randomPos = generateRandomPos(w / 2, h / 2, (w + h) / 2, w, h);
     this.target.x = randomPos.x;
     this.target.y = randomPos.y;
 
@@ -131,17 +129,23 @@ class Particle {
   }
 }
 
-/** Resolve the Fraunces family injected by next/font, sized to fit the word. */
-function displayFont(ctx: CanvasRenderingContext2D, word: string): string {
+/** Resolve the Fraunces family injected by next/font. */
+function displayFamily(): string {
   const family =
     getComputedStyle(document.documentElement).getPropertyValue("--font-fraunces").trim() ||
     "Georgia";
-  let size = 220;
+  return `${family}, Georgia, serif`;
+}
+
+/** Fit the message to the canvas: start large, shrink until it fits. */
+function fitFont(ctx: CanvasRenderingContext2D, word: string, w: number, h: number): string {
+  const family = displayFamily();
+  let size = Math.round(h * 0.42);
   do {
-    ctx.font = `700 ${size}px ${family}, Georgia, serif`;
-    if (ctx.measureText(word).width <= CANVAS_W * 0.86) break;
-    size -= 10;
-  } while (size > 90);
+    ctx.font = `600 ${size}px ${family}`;
+    if (ctx.measureText(word).width <= w * 0.92) break;
+    size -= 4;
+  } while (size > 28);
   return ctx.font;
 }
 
@@ -158,23 +162,30 @@ export function ParticleTextEffect({
     const canvas = canvasRef.current;
     if (!canvas || words.length === 0) return;
 
-    canvas.width = CANVAS_W;
-    canvas.height = CANVAS_H;
     const ctx = canvas.getContext("2d")!;
+    let W = 0;
+    let H = 0;
+
+    const sizeCanvas = () => {
+      const rect = canvas.getBoundingClientRect();
+      W = Math.max(300, Math.round(rect.width));
+      H = Math.max(180, Math.round(rect.height));
+      canvas.width = W;
+      canvas.height = H;
+    };
+    sizeCanvas();
 
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduced) {
-      // Static render: first word, no simulation.
-      ctx.fillStyle = `rgb(${WORD_COLORS[0].r}, ${WORD_COLORS[0].g}, ${WORD_COLORS[0].b})`;
-      ctx.font = displayFont(ctx, words[0]);
+      // Static render: first message, no simulation.
+      const c = WORD_COLORS[0];
+      ctx.fillStyle = `rgb(${c.r}, ${c.g}, ${c.b})`;
+      ctx.font = fitFont(ctx, words[0], W, H);
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
-      ctx.fillText(words[0], CANVAS_W / 2, CANVAS_H / 2);
+      ctx.fillText(words[0], W / 2, H / 2);
       return;
     }
-
-    // Coarser sampling on small screens keeps the simulation cheap.
-    const pixelSteps = window.innerWidth < 768 ? 9 : 6;
 
     const particles: Particle[] = [];
     let frameCount = 0;
@@ -184,25 +195,28 @@ export function ParticleTextEffect({
     const mouse = { x: 0, y: 0, isPressed: false, isRightClick: false };
 
     const nextWord = (word: string, color: Rgb) => {
+      // Coarser sampling on narrow canvases keeps the simulation cheap.
+      const pixelSteps = W < 700 ? 7 : 6;
+
       const offscreen = document.createElement("canvas");
-      offscreen.width = CANVAS_W;
-      offscreen.height = CANVAS_H;
+      offscreen.width = W;
+      offscreen.height = H;
       const offCtx = offscreen.getContext("2d")!;
 
       offCtx.fillStyle = "white";
-      offCtx.font = displayFont(offCtx, word);
+      offCtx.font = fitFont(offCtx, word, W, H);
       offCtx.textAlign = "center";
       offCtx.textBaseline = "middle";
-      offCtx.fillText(word, CANVAS_W / 2, CANVAS_H / 2);
+      offCtx.fillText(word, W / 2, H / 2);
 
-      const pixels = offCtx.getImageData(0, 0, CANVAS_W, CANVAS_H).data;
+      const pixels = offCtx.getImageData(0, 0, W, H).data;
 
       let particleIndex = 0;
       const coordsIndexes: number[] = [];
       for (let i = 0; i < pixels.length; i += pixelSteps * 4) {
         coordsIndexes.push(i);
       }
-      // Shuffle so the word assembles fluidly instead of scanline by scanline.
+      // Shuffle so the message assembles fluidly instead of scanline by scanline.
       for (let i = coordsIndexes.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [coordsIndexes[i], coordsIndexes[j]] = [coordsIndexes[j], coordsIndexes[i]];
@@ -210,8 +224,8 @@ export function ParticleTextEffect({
 
       for (const pixelIndex of coordsIndexes) {
         if (pixels[pixelIndex + 3] > 0) {
-          const x = (pixelIndex / 4) % CANVAS_W;
-          const y = Math.floor(pixelIndex / 4 / CANVAS_W);
+          const x = (pixelIndex / 4) % W;
+          const y = Math.floor(pixelIndex / 4 / W);
 
           let particle: Particle;
           if (particleIndex < particles.length) {
@@ -220,7 +234,7 @@ export function ParticleTextEffect({
             particleIndex++;
           } else {
             particle = new Particle();
-            const randomPos = generateRandomPos(CANVAS_W / 2, CANVAS_H / 2, (CANVAS_W + CANVAS_H) / 2);
+            const randomPos = generateRandomPos(W / 2, H / 2, (W + H) / 2, W, H);
             particle.pos.x = randomPos.x;
             particle.pos.y = randomPos.y;
             particle.maxSpeed = Math.random() * 6 + 4;
@@ -239,7 +253,7 @@ export function ParticleTextEffect({
       }
 
       for (let i = particleIndex; i < particles.length; i++) {
-        particles[i].kill();
+        particles[i].kill(W, H);
       }
     };
 
@@ -249,7 +263,7 @@ export function ParticleTextEffect({
       // Motion-blur trail in the page background color — the canvas stays
       // visually seamless against the cream page, no visible frame.
       ctx.fillStyle = `rgba(${CREAM.r}, ${CREAM.g}, ${CREAM.b}, 0.12)`;
-      ctx.fillRect(0, 0, CANVAS_W, CANVAS_H);
+      ctx.fillRect(0, 0, W, H);
 
       for (let i = particles.length - 1; i >= 0; i--) {
         const particle = particles[i];
@@ -257,7 +271,7 @@ export function ParticleTextEffect({
         particle.draw(ctx);
         if (
           particle.isKilled &&
-          (particle.pos.x < 0 || particle.pos.x > CANVAS_W || particle.pos.y < 0 || particle.pos.y > CANVAS_H)
+          (particle.pos.x < 0 || particle.pos.x > W || particle.pos.y < 0 || particle.pos.y > H)
         ) {
           particles.splice(i, 1);
         }
@@ -269,7 +283,7 @@ export function ParticleTextEffect({
           const distance = Math.sqrt(
             Math.pow(particle.pos.x - mouse.x, 2) + Math.pow(particle.pos.y - mouse.y, 2),
           );
-          if (distance < 50) particle.kill();
+          if (distance < 50) particle.kill(W, H);
         });
       }
 
@@ -301,10 +315,23 @@ export function ParticleTextEffect({
     );
     observer.observe(canvas);
 
+    // Re-fit when the layout changes meaningfully (e.g. orientation flip).
+    let resizeTimer = 0;
+    const resizeObserver = new ResizeObserver(() => {
+      const rect = canvas.getBoundingClientRect();
+      if (Math.abs(rect.width - W) < 40 && Math.abs(rect.height - H) < 40) return;
+      window.clearTimeout(resizeTimer);
+      resizeTimer = window.setTimeout(() => {
+        sizeCanvas();
+        nextWord(words[wordIndex], WORD_COLORS[wordIndex % WORD_COLORS.length]);
+      }, 150);
+    });
+    resizeObserver.observe(canvas);
+
     const toCanvasCoords = (e: MouseEvent) => {
       const rect = canvas.getBoundingClientRect();
-      mouse.x = ((e.clientX - rect.left) / rect.width) * CANVAS_W;
-      mouse.y = ((e.clientY - rect.top) / rect.height) * CANVAS_H;
+      mouse.x = ((e.clientX - rect.left) / rect.width) * W;
+      mouse.y = ((e.clientY - rect.top) / rect.height) * H;
     };
     const handleMouseDown = (e: MouseEvent) => {
       mouse.isPressed = true;
@@ -325,6 +352,8 @@ export function ParticleTextEffect({
     return () => {
       stop();
       observer.disconnect();
+      resizeObserver.disconnect();
+      window.clearTimeout(resizeTimer);
       canvas.removeEventListener("mousedown", handleMouseDown);
       canvas.removeEventListener("mouseup", handleMouseUp);
       canvas.removeEventListener("mousemove", toCanvasCoords);
@@ -333,12 +362,5 @@ export function ParticleTextEffect({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [words.join("|")]);
 
-  return (
-    <canvas
-      ref={canvasRef}
-      aria-hidden
-      className={className}
-      style={{ width: "100%", height: "auto" }}
-    />
-  );
+  return <canvas ref={canvasRef} aria-hidden className={className} />;
 }

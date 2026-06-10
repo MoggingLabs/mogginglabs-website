@@ -5,6 +5,16 @@ export const site = {
   subhead:
     "MoggingLabs designs, installs, and maintains custom AI agents for marketing and lead-generation teams doing $50k+ a month. We start with a free audit that shows you exactly where your pipeline loses time and revenue — yours to keep, whatever you decide.",
   primaryCta: "Get your free AI audit",
+  // Cycling particle-hero messages. Keep each short — they render as a
+  // single fitted line of display type.
+  heroMessages: [
+    "AI agents for lead-gen teams",
+    "Built into the tools you use",
+    "Live in weeks, not quarters",
+    "Every lead answered in seconds",
+    "Measured in plain numbers",
+    "Start with a free audit",
+  ],
   secondaryCta: "See the agents",
   trustLine:
     "Built by operators running live Meta + GoHighLevel pipelines. TODO_FOUNDER: one-line proof stat.",
