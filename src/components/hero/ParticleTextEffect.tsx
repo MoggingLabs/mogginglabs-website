@@ -140,10 +140,10 @@ function displayFamily(): string {
 /** Fit the message to the canvas: start large, shrink until it fits. */
 function fitFont(ctx: CanvasRenderingContext2D, word: string, w: number, h: number): string {
   const family = displayFamily();
-  let size = Math.round(h * 0.42);
+  let size = Math.round(h * 0.32);
   do {
     ctx.font = `600 ${size}px ${family}`;
-    if (ctx.measureText(word).width <= w * 0.92) break;
+    if (ctx.measureText(word).width <= w * 0.9) break;
     size -= 4;
   } while (size > 28);
   return ctx.font;
@@ -152,9 +152,12 @@ function fitFont(ctx: CanvasRenderingContext2D, word: string, w: number, h: numb
 export function ParticleTextEffect({
   words,
   className,
+  textYRatio = 0.5,
 }: {
   words: string[];
   className?: string;
+  /** Vertical center of the formed text, as a fraction of canvas height. */
+  textYRatio?: number;
 }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -183,7 +186,7 @@ export function ParticleTextEffect({
       ctx.font = fitFont(ctx, words[0], W, H);
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
-      ctx.fillText(words[0], W / 2, H / 2);
+      ctx.fillText(words[0], W / 2, H * textYRatio);
       return;
     }
 
@@ -207,7 +210,7 @@ export function ParticleTextEffect({
       offCtx.font = fitFont(offCtx, word, W, H);
       offCtx.textAlign = "center";
       offCtx.textBaseline = "middle";
-      offCtx.fillText(word, W / 2, H / 2);
+      offCtx.fillText(word, W / 2, H * textYRatio);
 
       const pixels = offCtx.getImageData(0, 0, W, H).data;
 

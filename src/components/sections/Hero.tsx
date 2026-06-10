@@ -10,7 +10,25 @@ export function Hero() {
   const trustTodo = site.trustLine.includes("TODO_FOUNDER");
   return (
     <section className="relative overflow-hidden">
-      <div className="mx-auto flex max-w-6xl flex-col items-center px-5 md:px-8 pt-10 md:pt-14 pb-16 md:pb-24 text-center">
+      {/* Full-bleed particle field: the canvas covers the whole section so
+          its edges coincide with the viewport — no visible frame anywhere.
+          Particles fly in from off-screen and the words form mid-section. */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+        className="absolute inset-0"
+      >
+        <ParticleTextEffect
+          words={[...site.heroMessages]}
+          textYRatio={0.42}
+          className="block h-full w-full"
+        />
+      </motion.div>
+
+      {/* Content overlay. pointer-events pass through to the canvas except
+          on the interactive elements themselves. */}
+      <div className="pointer-events-none relative z-10 mx-auto flex min-h-[82vh] max-w-6xl flex-col items-center px-5 md:px-8 pt-10 md:pt-14 pb-14 text-center">
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -25,23 +43,14 @@ export function Hero() {
           {site.headline.join(" ")} {site.headlineAccent}
         </h1>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="w-full"
-        >
-          <ParticleTextEffect
-            words={[...site.heroMessages]}
-            className="block w-full h-[230px] sm:h-[300px] md:h-[360px] lg:h-[420px]"
-          />
-        </motion.div>
+        {/* Open space where the particle messages assemble. */}
+        <div className="flex-1" />
 
         <motion.p
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.5, ease: [0.25, 1, 0.5, 1] }}
-          className="mt-2 max-w-2xl text-lg leading-relaxed text-ink-2"
+          className="max-w-2xl text-lg leading-relaxed text-ink-2"
         >
           {site.subhead}
         </motion.p>
@@ -50,7 +59,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.7, ease: [0.25, 1, 0.5, 1] }}
-          className="mt-9 flex flex-wrap items-center justify-center gap-4"
+          className="pointer-events-auto mt-9 flex flex-wrap items-center justify-center gap-4"
         >
           <MagneticButton>
             <AuditButton location="hero" size="lg">
