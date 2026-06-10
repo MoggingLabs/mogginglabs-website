@@ -28,6 +28,14 @@ const WORD_COLORS: Rgb[] = [
  *  would run twice as fast on 120Hz displays. */
 const HOLD_MS = 8000;
 
+/** Radius (canvas px) of the cursor's particle-scatter effect. */
+const KILL_RADIUS = 22;
+
+/** Per-frame background fade. Higher = shorter, crisper particle trails;
+ *  lower = long motion-blur smears. Keep high enough that trails read as
+ *  clean movement, not haze, against the flat cream page. */
+const TRAIL_FADE = 0.25;
+
 function generateRandomPos(cx: number, cy: number, mag: number, w: number, h: number): Vector2D {
   const randomX = Math.random() * w;
   const randomY = Math.random() * h;
@@ -265,9 +273,9 @@ export function ParticleTextEffect({
     const animate = () => {
       if (!running) return;
 
-      // Motion-blur trail in the page background color — the canvas stays
+      // Trail fade in the page background color — the canvas stays
       // visually seamless against the cream page, no visible frame.
-      ctx.fillStyle = `rgba(${CREAM.r}, ${CREAM.g}, ${CREAM.b}, 0.12)`;
+      ctx.fillStyle = `rgba(${CREAM.r}, ${CREAM.g}, ${CREAM.b}, ${TRAIL_FADE})`;
       ctx.fillRect(0, 0, W, H);
 
       for (let i = particles.length - 1; i >= 0; i--) {
@@ -288,7 +296,7 @@ export function ParticleTextEffect({
           const distance = Math.sqrt(
             Math.pow(particle.pos.x - mouse.x, 2) + Math.pow(particle.pos.y - mouse.y, 2),
           );
-          if (distance < 50) particle.kill(W, H);
+          if (distance < KILL_RADIUS) particle.kill(W, H);
         });
       }
 
