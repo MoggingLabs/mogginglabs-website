@@ -9,7 +9,7 @@ Light, editorial, anti-AI-slop design: cream/ink/persimmon palette, Fraunces dis
 - **Next.js 16** (App Router, Turbopack) + TypeScript
 - **Tailwind CSS v4** — design tokens in `src/app/globals.css` `@theme`
 - **Motion** (Framer Motion v12) — scroll reveals, counters, accordion, magnetic CTA
-- **React Three Fiber + drei** — "The New Hire" 3D hero (desktop-only, lazy, reduced-motion safe)
+- **Canvas particle hero** — agent names assemble from particles (brand palette, reduced-motion safe, pauses off-screen)
 - **@typeform/embed-react** — audit application (popup + lazy inline widget)
 - **Vercel Analytics + Speed Insights**
 

@@ -2,10 +2,13 @@
 
 import { motion } from "motion/react";
 import { site } from "@/content/site";
+import { agents } from "@/content/agents";
 import { HeadlineWords } from "@/components/ui/Stagger";
 import { AuditButton } from "@/components/conversion/AuditButton";
 import { MagneticButton } from "@/components/ui/MagneticButton";
-import { HeroVisual } from "@/components/three/HeroVisual";
+import { ParticleTextEffect } from "@/components/hero/ParticleTextEffect";
+
+const AGENT_NAMES = agents.map((agent) => agent.name.toUpperCase());
 
 export function Hero() {
   const trustTodo = site.trustLine.includes("TODO_FOUNDER");
@@ -67,8 +70,17 @@ export function Hero() {
             </motion.p>
           )}
         </div>
-        <div className="lg:col-span-5 relative">
-          <HeroVisual />
+        <div className="lg:col-span-5 relative self-center">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.5 }}
+          >
+            <ParticleTextEffect words={AGENT_NAMES} />
+            <p className="mt-3 text-center font-mono text-[11px] uppercase tracking-[0.18em] text-stone">
+              Fig. 01 — the team, by name
+            </p>
+          </motion.div>
         </div>
       </div>
     </section>
