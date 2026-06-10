@@ -9,7 +9,7 @@ import { HeroScene } from "./HeroScene";
  * only mounted on pointer-fine desktop without reduced motion.
  * Pauses the frameloop when scrolled out of view.
  */
-export default function HeroCanvas() {
+export default function HeroCanvas({ onReady }: { onReady?: () => void }) {
   const wrapper = useRef<HTMLDivElement>(null);
   const pointer = useRef({ x: 0, y: 0 });
   const [frameloop, setFrameloop] = useState<"always" | "never">("always");
@@ -41,6 +41,11 @@ export default function HeroCanvas() {
         frameloop={frameloop}
         gl={{ antialias: true, powerPreference: "low-power", alpha: true }}
         camera={{ position: [0, 0.2, 4.2], fov: 38 }}
+        onCreated={() => {
+          // Signal readiness on the next frame so the crossfade starts
+          // only once the scene has actually drawn.
+          requestAnimationFrame(() => onReady?.());
+        }}
       >
         <HeroScene pointer={pointer} />
       </Canvas>

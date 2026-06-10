@@ -6,13 +6,19 @@ import { HeroFallback } from "./HeroFallback";
 
 const HeroCanvas = dynamic(() => import("./HeroCanvas"), { ssr: false });
 
+/** Headline + subhead + CTA reveals finish ≈1.5s after load; the canvas
+ *  must not initialize before then or its main-thread work janks them. */
+const INTRO_MS = 1700;
+
 /**
- * Gates the 3D scene: desktop + fine pointer + no reduced-motion only,
- * mounted after first idle so the headline owns LCP. Everyone else gets
- * the static fallback — same box, zero layout shift.
+ * Gates the 3D scene: desktop + fine pointer + no reduced-motion only.
+ * Mounts strictly AFTER the hero text intro completes (then waits for an
+ * idle slot), and crossfades over the static fallback once the WebGL
+ * context has produced its first frame — same box, zero layout shift.
  */
 export function HeroVisual() {
   const [show3d, setShow3d] = useState(false);
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
     const capable =
@@ -21,20 +27,44 @@ export function HeroVisual() {
       !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (!capable) return;
 
+    let cancelled = false;
+    let idle: number | undefined;
     const hasIdle = typeof window.requestIdleCallback === "function";
-    const idle = hasIdle
-      ? window.requestIdleCallback(() => setShow3d(true), { timeout: 2000 })
-      : window.setTimeout(() => setShow3d(true), 350);
+
+    const timer = window.setTimeout(() => {
+      if (cancelled) return;
+      if (hasIdle) {
+        idle = window.requestIdleCallback(() => !cancelled && setShow3d(true), {
+          timeout: 1500,
+        });
+      } else {
+        setShow3d(true);
+      }
+    }, INTRO_MS);
+
     return () => {
-      if (hasIdle) window.cancelIdleCallback(idle as number);
-      else window.clearTimeout(idle);
+      cancelled = true;
+      window.clearTimeout(timer);
+      if (hasIdle && idle !== undefined) window.cancelIdleCallback(idle);
     };
   }, []);
 
   return (
-    <div className="relative aspect-square w-full max-w-[480px] mx-auto lg:max-w-none" aria-hidden={show3d}>
-      {!show3d && <HeroFallback />}
-      {show3d && <HeroCanvas />}
+    <div className="relative aspect-square w-full max-w-[480px] mx-auto lg:max-w-none" aria-hidden={ready}>
+      {/* Fallback stays mounted underneath until the canvas has rendered,
+          then fades out — avoids both an empty box and double-ghosting. */}
+      <div
+        className={`absolute inset-0 transition-opacity duration-700 ${ready ? "opacity-0" : "opacity-100"}`}
+      >
+        <HeroFallback />
+      </div>
+      {show3d && (
+        <div
+          className={`absolute inset-0 transition-opacity duration-700 ${ready ? "opacity-100" : "opacity-0"}`}
+        >
+          <HeroCanvas onReady={() => setReady(true)} />
+        </div>
+      )}
     </div>
   );
 }
