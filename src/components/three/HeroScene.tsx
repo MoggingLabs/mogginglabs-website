@@ -93,7 +93,7 @@ export function HeroScene({ pointer }: { pointer: React.RefObject<{ x: number; y
         </TeamMember>
       </group>
 
-      <ContactShadows position={[0, -1.25, 0]} opacity={0.35} blur={2.5} scale={6} far={2.5} />
+      <ContactShadows position={[0, -1.35, 0]} opacity={0.28} blur={3.2} scale={7} far={2.8} />
 
       <Environment resolution={256}>
         {/* soft studio rig on a light background */}

@@ -40,7 +40,7 @@ export default function HeroCanvas({ onReady }: { onReady?: () => void }) {
         dpr={[1, 1.75]}
         frameloop={frameloop}
         gl={{ antialias: true, powerPreference: "low-power", alpha: true }}
-        camera={{ position: [0, 0.2, 4.2], fov: 38 }}
+        camera={{ position: [0, 0.2, 4.6], fov: 38 }}
         onCreated={() => {
           // Signal readiness on the next frame so the crossfade starts
           // only once the scene has actually drawn.

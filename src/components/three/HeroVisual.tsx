@@ -14,7 +14,11 @@ const INTRO_MS = 1700;
  * Gates the 3D scene: desktop + fine pointer + no reduced-motion only.
  * Mounts strictly AFTER the hero text intro completes (then waits for an
  * idle slot), and crossfades over the static fallback once the WebGL
- * context has produced its first frame — same box, zero layout shift.
+ * context has produced its first frame.
+ *
+ * Visually the scene is composed into the page rather than boxed: the
+ * canvas bleeds far beyond the layout slot so nothing clips at an edge,
+ * grounded by a radial wash and a hairline orbit ring.
  */
 export function HeroVisual() {
   const [show3d, setShow3d] = useState(false);
@@ -50,21 +54,40 @@ export function HeroVisual() {
   }, []);
 
   return (
-    <div className="relative aspect-square w-full max-w-[480px] mx-auto lg:max-w-none" aria-hidden={ready}>
-      {/* Fallback stays mounted underneath until the canvas has rendered,
-          then fades out — avoids both an empty box and double-ghosting. */}
-      <div
-        className={`absolute inset-0 transition-opacity duration-700 ${ready ? "opacity-0" : "opacity-100"}`}
-      >
-        <HeroFallback />
-      </div>
-      {show3d && (
+    <div aria-hidden className="relative select-none">
+      <div className="relative h-[300px] sm:h-[380px] lg:h-[500px]">
+        {/* Soft accent wash — the scene sits in light, not in a box */}
         <div
-          className={`absolute inset-0 transition-opacity duration-700 ${ready ? "opacity-100" : "opacity-0"}`}
-        >
-          <HeroCanvas onReady={() => setReady(true)} />
+          className="absolute left-1/2 top-1/2 w-[160%] aspect-square -translate-x-1/2 -translate-y-1/2 rounded-full"
+          style={{
+            background:
+              "radial-gradient(circle at 50% 45%, rgba(232,80,26,0.07) 0%, rgba(232,80,26,0.025) 30%, transparent 62%)",
+          }}
+        />
+        {/* Hairline orbit ring, editorial grounding */}
+        <div className="absolute left-1/2 top-1/2 w-[112%] aspect-square -translate-x-1/2 -translate-y-1/2 rounded-full border border-ink/10" />
+        <div className="absolute left-1/2 top-1/2 w-[86%] aspect-square -translate-x-1/2 -translate-y-1/2 rounded-full border border-ink/[0.05]" />
+
+        {/* Bleed layer: much larger than the slot so drifting/tilting
+            objects and shadows never hit a visible canvas edge. */}
+        <div className="pointer-events-none absolute -inset-x-24 -inset-y-20 sm:-inset-x-32 sm:-inset-y-24">
+          <div
+            className={`absolute inset-0 transition-opacity duration-700 ${ready ? "opacity-0" : "opacity-100"}`}
+          >
+            <HeroFallback />
+          </div>
+          {show3d && (
+            <div
+              className={`absolute inset-0 transition-opacity duration-700 ${ready ? "opacity-100" : "opacity-0"}`}
+            >
+              <HeroCanvas onReady={() => setReady(true)} />
+            </div>
+          )}
         </div>
-      )}
+      </div>
+      <p className="mt-5 text-center font-mono text-[11px] uppercase tracking-[0.18em] text-stone">
+        Fig. 01 — your team, plus one agent
+      </p>
     </div>
   );
 }
