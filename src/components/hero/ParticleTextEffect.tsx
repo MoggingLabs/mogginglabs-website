@@ -24,7 +24,9 @@ const WORD_COLORS: Rgb[] = [
   { r: 196, g: 62, b: 16 }, // deep persimmon
 ];
 
-const FRAMES_PER_WORD = 240; // ~4s per message at 60fps
+/** How long each message holds on screen. Clock-based — frame counting
+ *  would run twice as fast on 120Hz displays. */
+const HOLD_MS = 8000;
 
 function generateRandomPos(cx: number, cy: number, mag: number, w: number, h: number): Vector2D {
   const randomX = Math.random() * w;
@@ -191,7 +193,7 @@ export function ParticleTextEffect({
     }
 
     const particles: Particle[] = [];
-    let frameCount = 0;
+    let lastSwitch = performance.now();
     let wordIndex = 0;
     let raf = 0;
     let running = false;
@@ -290,8 +292,8 @@ export function ParticleTextEffect({
         });
       }
 
-      frameCount++;
-      if (frameCount % FRAMES_PER_WORD === 0) {
+      if (performance.now() - lastSwitch >= HOLD_MS) {
+        lastSwitch = performance.now();
         wordIndex = (wordIndex + 1) % words.length;
         nextWord(words[wordIndex], WORD_COLORS[wordIndex % WORD_COLORS.length]);
       }
@@ -302,6 +304,9 @@ export function ParticleTextEffect({
     const start = () => {
       if (running) return;
       running = true;
+      // Give the current word its full dwell after scrolling back into view —
+      // wall-clock kept ticking while the simulation was paused.
+      lastSwitch = performance.now();
       raf = requestAnimationFrame(animate);
     };
     const stop = () => {

@@ -5,15 +5,15 @@ export const site = {
   subhead:
     "MoggingLabs designs, installs, and maintains custom AI agents for marketing and lead-generation teams doing $50k+ a month. We start with a free audit that shows you exactly where your pipeline loses time and revenue — yours to keep, whatever you decide.",
   primaryCta: "Get your free AI audit",
-  // Cycling particle-hero messages. Keep each short — they render as a
-  // single fitted line of display type.
+  // Cycling particle-hero messages. Rules: every message must be fully
+  // self-contained (a visitor landing mid-loop must understand it with no
+  // other context), and short enough to read in a glance — they render as
+  // a single fitted line of display type, ~8s each.
   heroMessages: [
     "AI agents for lead-gen teams",
-    "Built into the tools you use",
-    "Live in weeks, not quarters",
-    "Every lead answered in seconds",
-    "Measured in plain numbers",
-    "Start with a free audit",
+    "Agents answer every lead in seconds",
+    "Your first agent live in weeks",
+    "Start with a free AI audit",
   ],
   secondaryCta: "See the agents",
   trustLine:
