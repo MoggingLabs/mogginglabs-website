@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# MoggingLabs — mogginglabs.org
 
-## Getting Started
+Marketing site for MoggingLabs, an AI implementation studio installing custom AI agents ("AI employees") for US marketing and lead-gen teams doing $50k+/month.
 
-First, run the development server:
+Light, editorial, anti-AI-slop design: cream/ink/persimmon palette, Fraunces display serif, Geist Sans/Mono, hairline borders. Conversion funnel: free AI audit → Typeform qualification → booking.
+
+## Stack
+
+- **Next.js 16** (App Router, Turbopack) + TypeScript
+- **Tailwind CSS v4** — design tokens in `src/app/globals.css` `@theme`
+- **Motion** (Framer Motion v12) — scroll reveals, counters, accordion, magnetic CTA
+- **React Three Fiber + drei** — "The New Hire" 3D hero (desktop-only, lazy, reduced-motion safe)
+- **@typeform/embed-react** — audit application (popup + lazy inline widget)
+- **Vercel Analytics + Speed Insights**
+
+## Develop
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev     # http://localhost:3000
+npm run build   # production build (all routes static)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Content
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+All copy, metrics, agents, FAQ, process steps, and niche-lander segments live in typed objects under `src/content/`. Sections are dumb renderers.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+**Before launch**, fill every placeholder:
 
-## Learn More
+```bash
+grep -rn "TODO_FOUNDER" src/
+```
 
-To learn more about Next.js, take a look at the following resources:
+Key placeholders: real proof metrics, founder letter + signature, the Typeform form ID in `src/lib/constants.ts`, contact email.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Routes
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| Route | Purpose |
+|---|---|
+| `/` | Full narrative + conversion |
+| `/apply` | Full-page audit application (cold-email deep-link target) |
+| `/for/[segment]` | Niche landers (`roofing-lead-gen`, `ppc-agencies`) — add segments in `src/content/segments.ts` |
+| `/privacy` | Compliance for ads / cold outreach |
 
-## Deploy on Vercel
+UTM params (`utm_source`, `utm_medium`, `utm_campaign`, `segment`) are forwarded to Typeform hidden fields for attribution.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Deploy
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Vercel. `mogginglabs.org` to be registered and attached in Vercel project settings.
